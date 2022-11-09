@@ -1,0 +1,158 @@
+
+from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import letter
+import datetime
+from random import randint
+a=randint(0,10000)
+Pollos=["Combo1","Medio pollo","Pollo completo","Pollo broster","Cualquier pollo con gaseosa"]
+class Ticket:
+    hora= datetime.datetime.now().hour    
+    minuto=datetime.datetime.now().minute
+
+    Datos={"Empresa":"DonuPollos","NIT":"86508191-1","Responsable de iva":"CIIU 1081","Agente":"Retenedor de ICA","TEL":"2100200","Ayuda":"Servicioalclientedunpollo@gmail.com","ubicacion":"San pedro plaza",
+    "DG":"23 69 55","LC":"126","Aut. DIAN":"18764027319797","DESDE JK":"-33449","HASTA JK":"-1000000","DCTO/EQUIVALENTE POS":"jk -52357","CAJERO":"Santiago Silva Puentes"}
+    
+    def Producto(self,diccionario):
+
+        self.Cajero =input("Digite el nombre del cajero en servicio: ")
+        diccionario["CAJERO"] =self.Cajero
+        self.UDS =int(input("Digite la cantidad del producto: ")) 
+        self.Descripcion =input("Digite el producto: ")
+        self.Forma =input("Digite la forma de pago: ")
+        self.Precio =float(input("Digite el precio del producto: "))
+        self.iva =self.Precio*19/100
+        self.Total =self.Precio*self.UDS
+
+    def Mostrar(self,diccionario):      
+        self.aleatorio = a
+        self.Confirm = diccionario.items()
+        print("\t                                   ",list(self.Confirm)[0][1])
+        print("\t                                 NIT:",list(self.Confirm)[1][1])
+        print("\t                           Responsables de iva:",list(self.Confirm)[2][1])
+        print("\t                                 ",list(self.Confirm)[3][1])
+        print("\t                                TEL:",list(self.Confirm)[4][1])
+        print("\t                                  ",list(self.Confirm)[5][1])
+        print("\t                                ",list(self.Confirm)[6][1])
+        print("\t                                DG ",list(self.Confirm)[7][1])
+        print("\t                                LC",list(self.Confirm)[8][1])
+        print("\t                                                                                                                           ")
+        print("\t                       AUT. DIAN",list(self.Confirm)[9][1]),"     FEC  01/04/2022"
+        print("\t                       Desde JK",list(self.Confirm)[10][1]),"    Hasta JK",list(self.Confirm)[11][1]
+        print("\t                       DCTO/EQUIVALENTE POS",list(self.Confirm)[12][1])
+        print("\t                       VIGENCIA HASTA:  31/03/2023") 
+        print("\t                       FECHA:", datetime.datetime.now().day,"/",datetime.datetime.now().month,"/",datetime.datetime.now().year,"         Hora:",self.hora,":",self.minuto) 
+        print("\t                       Cajero",list(self.Confirm)[13][1])
+        print("\t                     ===============================================")
+        print("\t                             UDS DESCRIPCION    PRECIO    TOTAL     ")
+        print("\t                     ===============================================")
+        print("\t                     ",self.UDS,"  ",self.Descripcion,"  ",self.Precio,"   ",self.Total )
+        print("\t                     ===============================================")
+        self.subtotal = self.Precio-self.iva
+        print(f"\t                            SUBTOTAL       {self.subtotal}")
+        print(f"\t                            DTO 0%       0")
+        print(f"\t                            Total       {self.Total}")
+        print("\t                     ===============================================")
+        print("\t                              DISCRIMINACION DE IMPUESTOS           ")
+        print("\t                     ===============================================")
+        print(f"\t                      BASE 19%   {self.subtotal}" f"  IVA  {self.iva}  ")
+        print(f"\t                      TOTAL      {self.subtotal}" f"  {self.iva}  ")
+        print("\t                     ===============================================")
+        print(f"\t                                  METODO DE PAGO     ")
+        print(f"\t                            ",self.Forma,"   ",self.Precio*self.UDS)
+        print("\t                     ===============================================")
+        print("\t                                 !GRACIAS POR TU COMPRA!                                                 ")
+        print("\t                               !Unete a nuestro programa de                                                  ")
+        print("\t                                 fidelizacion La Rosca DD!                                                 ")
+
+        print("\t                                COOODIGOOO QRRRRRRRRRRRRRR                                                 ")
+
+        print("\t                                 www.donupollos.com.co                                                 ")
+        print("\t                                 Registrate con el codigo:",a                                          )
+        print("\t                     ===============================================")
+        print("\t                        Tiquete POS ingreso por software Elxokas                                                 ")
+        print("\t                          Desarrollado por ING: SANTIAGO SILVA PUENTES                                                  ")
+        print("\t                     ===============================================")
+        print("\t                        Si requiere de factura electronica de venta                                                 ")
+        print("\t                                 Paila parcero se jodio                                                  ")
+        print("\t                            Mentiras solicitela al siguiente correo                                                 ")
+        print("\t                               adjuntando su rut y foto de este                                                   ") 
+        print("\t                                         tiquete POS                                                   ")
+        print("\t                                 SOLICITAMEAQUI@HOTMAIL.COM                                                   ")\
+
+    def Mostrar_PDF(self):      
+        w,h = letter
+        C= canvas.Canvas("facturita.pdf", pagesize=letter )
+        C.rect(160, h-770, 300, 790)
+        C.setLineWidth(.2)
+        C.setFont('Helvetica',10)
+        C.drawString(250,h -30, list(self.Confirm)[0][1])
+        C.drawString(251,h -42,f"NIT:{list(self.Confirm)[1][1]}")
+        C.drawString(248,h -55,f"Responsables de iva:{list(self.Confirm)[2][1]}")
+        C.drawString(248,h -67, list(self.Confirm)[3][1])
+        C.drawString(248,h -79,f"TEL:,{list(self.Confirm)[4][1]}")
+        C.drawString(210,h -90,list(self.Confirm)[5][1])
+        C.drawString(248,h -101,list(self.Confirm)[6][1])
+        C.drawString(255,h -113,f"DG{list(self.Confirm)[7][1]}")
+        C.drawString(175,h -140,f"LC,{list(self.Confirm)[8][1]}")
+        C.drawString(175,h -152,f"AUT. DIAN,{list(self.Confirm)[9][1]}, FEC  01/04/2022")
+        C.drawString(175,h -164,f"Desde JK,{list(self.Confirm)[10][1]},    Hasta JK,{list(self.Confirm)[11][1]}")
+        C.drawString(175,h -176,f"DCTO/EQUIVALENTE POS,{list(self.Confirm)[12][1]}")
+        C.drawString(175,h -188,f"VIGENCIA HASTA:  31/03/2023") 
+        C.drawString(175,h -200,f"FECHA: {datetime.datetime.now().day} / {datetime.datetime.now().month} /{datetime.datetime.now().year}         Hora:{self.hora}:{self.minuto}") 
+        C.drawString(175,h -212,f"Cajero,{list(self.Confirm)[13][1]}")
+        C.drawString(175,h -224,"===============================================")
+        C.drawString(175,h -236,"UDS DESCRIPCION    PRECIO    TOTAL     ")
+        C.drawString(175,h -248,"===============================================")
+        C.drawString(175,h -260,f"{self.UDS}    {self.Descripcion}    {self.Precio}    {self.Total}")
+        C.drawString(175,h -272,"===============================================")
+        self.subtotal = self.Precio-self.iva
+        C.drawString(175,h -284,f"SUBTOTAL       {self.subtotal}")
+        C.drawString(175,h -296,f"DTO 0%       0")
+        C.drawString(260,h -308,f"Total       {self.Total}")
+        C.drawString(175,h -320,"===============================================")
+        C.drawString (234,h -332,"DISCRIMINACION DE IMPUESTOS           ")
+        C.drawString(175,h -344,"===============================================")
+        C.drawString(190,h -356,f"BASE 19%   {self.subtotal}" f"  IVA  {self.iva}  ")
+        C.drawString(190,h -368,f"TOTAL      {self.subtotal}" f"  {self.iva}  ")
+        C.drawString(175,h -344,"===============================================")
+        C.drawString(190,h -392,"METODO DE PAGO     ")
+        C.drawString(175,h -404,f"{self.Forma}   {self.Precio*self.UDS}")
+        C.drawString(175,h -416,"===============================================")
+        C.drawString(232,h -428,"!GRACIAS POR TU COMPRA!                                                 ")
+        C.drawImage("Pollos.PNG",250, h -540, width=100, height=100)
+        C.drawString(239,h -552,"!Unete a nuestro programa de                                                  ")
+        C.drawString(236,h -564,"fidelizacion La Rosca DD!                                                 ")
+        C.drawString(237,h -576," www.donupollos.com.co                                                 ")
+        C.drawString(238,h -588,f"Registrate con el codigo:{self.aleatorio}"                                          )
+        C.drawString(175,h -600,"===============================================")
+        C.drawString(175,h -612,"Tiquete POS ingreso por software Elxokas                                                 ")
+        C.drawString(180,h -624,"Desarrollado por ING: SANTIAGO SILVA PUENTES                                                  ")
+        C.drawString(175,h -636,"===============================================")
+        C.drawString(210,h -680,"Si requiere de factura electronica de venta                                                 ")
+        C.drawString(250,h -690,"Paila parcero se jodio                                                  ")
+        C.drawString(220,h -700,"Mentiras solicitela al siguiente correo                                                 ")
+        C.drawString(228,h -710,"adjuntando su rut y foto de este                                                   ") 
+        C.drawString(270,h -720,"tiquete POS                                                   ")
+        C.drawString(218,h -730,"SOLICITAMEAQUI@HOTMAIL.COM                                                   ")
+        C.save()
+
+print("\t     POLLERIA DONUPOLLOS  ")   
+contador=1
+inicio =input("Desea iniciar el proceso de compra?")
+
+if inicio =="Si" or inicio=="si" or inicio=="SI" or inicio=="sI" and contador== contador:
+     contador=1
+     print("Hola,es hora de trabajar")
+     for pollo in Pollos:
+        print(f"{contador} {pollo}")
+        contador+=1
+        print("|"*50)
+        print("\t\t a la venta")
+        objeto = Ticket()
+     else:
+        exit
+
+
+objeto.Producto(objeto.Datos)
+objeto.Mostrar(objeto.Datos)
+objeto.Mostrar_PDF()
