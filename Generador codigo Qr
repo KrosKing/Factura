@@ -1,0 +1,12 @@
+
+import qrcode
+from PIL import Image
+cadena = input("Introduzca el texto para el qr")
+imagen = qrcode.make(cadena)
+
+nombre_imagen = input("introduzca nombre de la image: ") + ".png"
+archivo_imagen   = open(nombre_imagen,'wb')
+imagen.save(archivo_imagen)
+archivo_imagen.close()
+ruta_imagen = './'+nombre_imagen
+Image.open(ruta_imagen).show()
